@@ -11,8 +11,24 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if #available(iOS 13.0, *) {
+            //should do nothing
+        } else {
+            let firstVC = SWViewController()
+            let navVC = UINavigationController.init(rootViewController: firstVC)
+            navVC.navigationBar.layer.shadowOpacity = 0.3
+            navVC.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 1)
+            navVC.navigationBar.layer.shadowRadius = 5
+            navVC.navigationBar.layer.masksToBounds = false
+            window = UIWindow(frame: UIScreen.main.bounds)
+            window?.backgroundColor = .clear
+            window?.rootViewController = navVC
+            window?.makeKeyAndVisible()
+        }
         return true
     }
 }

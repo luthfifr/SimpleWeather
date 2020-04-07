@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SWViewController.swift
 //  SimpleWeather
 //
 //  Created by Luthfi Fathur Rahman on 07/04/20.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class SWViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .white
+        title = "Current Weather"
     }
-
-
 }
 
