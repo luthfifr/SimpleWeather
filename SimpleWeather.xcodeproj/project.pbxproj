@@ -3,16 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C7D9A5C7AA68001D25F02B6 /* Pods_SimpleWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEFFBC8E5CB915F1972B5D91 /* Pods_SimpleWeather.framework */; };
 		427564A8243C844B0084DB39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427564A7243C844B0084DB39 /* AppDelegate.swift */; };
 		427564AA243C844B0084DB39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427564A9243C844B0084DB39 /* SceneDelegate.swift */; };
 		427564B1243C844D0084DB39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 427564B0243C844D0084DB39 /* Assets.xcassets */; };
 		427564B4243C844D0084DB39 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 427564B2243C844D0084DB39 /* LaunchScreen.storyboard */; };
 		427564BF243C844E0084DB39 /* SimpleWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427564BE243C844E0084DB39 /* SimpleWeatherTests.swift */; };
 		427564C9243CD6310084DB39 /* SWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427564AB243C844B0084DB39 /* SWViewController.swift */; };
+		B368ADB18A70BBFE1DC15637 /* Pods_SimpleWeatherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9945AEFE2D6AF56509E5558A /* Pods_SimpleWeatherTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12C7A8F4BC2464D68F1B15A8 /* Pods-SimpleWeatherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWeatherTests.release.xcconfig"; path = "Target Support Files/Pods-SimpleWeatherTests/Pods-SimpleWeatherTests.release.xcconfig"; sourceTree = "<group>"; };
 		427564A4243C844B0084DB39 /* SimpleWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		427564A7243C844B0084DB39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		427564A9243C844B0084DB39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +39,11 @@
 		427564BA243C844E0084DB39 /* SimpleWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		427564BE243C844E0084DB39 /* SimpleWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleWeatherTests.swift; sourceTree = "<group>"; };
 		427564C0243C844E0084DB39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9945AEFE2D6AF56509E5558A /* Pods_SimpleWeatherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleWeatherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C34AC465428C5298255BC54A /* Pods-SimpleWeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWeatherTests.debug.xcconfig"; path = "Target Support Files/Pods-SimpleWeatherTests/Pods-SimpleWeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D87BC3232ADAE328A383C741 /* Pods-SimpleWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWeather.release.xcconfig"; path = "Target Support Files/Pods-SimpleWeather/Pods-SimpleWeather.release.xcconfig"; sourceTree = "<group>"; };
+		EE5F67B9C9C0D44AA498720E /* Pods-SimpleWeather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWeather.debug.xcconfig"; path = "Target Support Files/Pods-SimpleWeather/Pods-SimpleWeather.debug.xcconfig"; sourceTree = "<group>"; };
+		FEFFBC8E5CB915F1972B5D91 /* Pods_SimpleWeather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleWeather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3C7D9A5C7AA68001D25F02B6 /* Pods_SimpleWeather.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B368ADB18A70BBFE1DC15637 /* Pods_SimpleWeatherTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +72,8 @@
 				427564A6243C844B0084DB39 /* SimpleWeather */,
 				427564BD243C844E0084DB39 /* SimpleWeatherTests */,
 				427564A5243C844B0084DB39 /* Products */,
+				FC9EA780B2021C876CF95627 /* Pods */,
+				E2A08144B4279279EF750350 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +108,26 @@
 			path = SimpleWeatherTests;
 			sourceTree = "<group>";
 		};
+		E2A08144B4279279EF750350 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FEFFBC8E5CB915F1972B5D91 /* Pods_SimpleWeather.framework */,
+				9945AEFE2D6AF56509E5558A /* Pods_SimpleWeatherTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FC9EA780B2021C876CF95627 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EE5F67B9C9C0D44AA498720E /* Pods-SimpleWeather.debug.xcconfig */,
+				D87BC3232ADAE328A383C741 /* Pods-SimpleWeather.release.xcconfig */,
+				C34AC465428C5298255BC54A /* Pods-SimpleWeatherTests.debug.xcconfig */,
+				12C7A8F4BC2464D68F1B15A8 /* Pods-SimpleWeatherTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -103,9 +135,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 427564C3243C844E0084DB39 /* Build configuration list for PBXNativeTarget "SimpleWeather" */;
 			buildPhases = (
+				2634772E5B7031643426AD0C /* [CP] Check Pods Manifest.lock */,
 				427564A0243C844B0084DB39 /* Sources */,
 				427564A1243C844B0084DB39 /* Frameworks */,
 				427564A2243C844B0084DB39 /* Resources */,
+				827F1CCA570C7C6B038BA8E8 /* [CP] Embed Pods Frameworks */,
+				427564CA243CEBE20084DB39 /* Swiftlint Run Script */,
+				427564CB243CEBFC0084DB39 /* Bump Up Build Number Script */,
 			);
 			buildRules = (
 			);
@@ -120,6 +156,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 427564C6243C844E0084DB39 /* Build configuration list for PBXNativeTarget "SimpleWeatherTests" */;
 			buildPhases = (
+				06CBAA5213266FDEAE2EB78D /* [CP] Check Pods Manifest.lock */,
 				427564B6243C844E0084DB39 /* Sources */,
 				427564B7243C844E0084DB39 /* Frameworks */,
 				427564B8243C844E0084DB39 /* Resources */,
@@ -190,6 +227,106 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		06CBAA5213266FDEAE2EB78D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SimpleWeatherTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2634772E5B7031643426AD0C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SimpleWeather-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		427564CA243CEBE20084DB39 /* Swiftlint Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swiftlint Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		427564CB243CEBFC0084DB39 /* Bump Up Build Number Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Bump Up Build Number Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "BUILDNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nNEWBUILDNUM=$(($BUILDNUM + 1))\nNEWBUILDNUMSTRING=`echo $NEWBUILDNUM`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $NEWBUILDNUMSTRING\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\n\n";
+		};
+		827F1CCA570C7C6B038BA8E8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SimpleWeather/Pods-SimpleWeather-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SimpleWeather/Pods-SimpleWeather-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SimpleWeather/Pods-SimpleWeather-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		427564A0243C844B0084DB39 /* Sources */ = {
@@ -348,6 +485,7 @@
 		};
 		427564C4243C844E0084DB39 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE5F67B9C9C0D44AA498720E /* Pods-SimpleWeather.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -367,6 +505,7 @@
 		};
 		427564C5243C844E0084DB39 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D87BC3232ADAE328A383C741 /* Pods-SimpleWeather.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -386,6 +525,7 @@
 		};
 		427564C7243C844E0084DB39 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C34AC465428C5298255BC54A /* Pods-SimpleWeatherTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -408,6 +548,7 @@
 		};
 		427564C8243C844E0084DB39 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12C7A8F4BC2464D68F1B15A8 /* Pods-SimpleWeatherTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

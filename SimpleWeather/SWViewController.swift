@@ -16,4 +16,3 @@ class SWViewController: UIViewController {
         title = "Current Weather"
     }
 }
-

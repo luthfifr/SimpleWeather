@@ -1,3 +1,4 @@
+//swiftlint:disable line_length
 //
 //  SceneDelegate.swift
 //  SimpleWeather
@@ -25,4 +26,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
     }
 }
-
