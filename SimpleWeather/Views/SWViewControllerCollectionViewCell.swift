@@ -7,6 +7,198 @@
 //
 
 import UIKit
+import SnapKit
 
 class SWViewControllerCollectionViewCell: UICollectionViewCell {
+    typealias SingleImageCell = SWViewControllerTableViewCell
+    typealias DefaultCell = UITableViewCell
+
+    private var containerView: UIView!
+    private var roundedCornerView: UIView!
+    private var tableView: UITableView!
+
+    private let defaultCellID = String(describing: DefaultCell.self)
+    private let singleImgCellID = String(describing: SingleImageCell.self)
+
+    // MARK: - Initialization
+    convenience init() {
+        self.init()
+        setupViews()
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupViews()
+    }
+}
+
+// MARK: - Private methods
+extension SWViewControllerCollectionViewCell {
+    private func setupViews() {
+        setupContainerView()
+        setupRoundedCornerView()
+        setupTableView()
+    }
+
+    private func setupContainerView() {
+        guard containerView == nil else { return }
+
+        containerView = UIView(frame: .zero)
+        containerView.backgroundColor = .white
+        containerView.layer.shadowColor = UIColor.black.cgColor
+        containerView.layer.shadowOpacity = 0.3
+        containerView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        containerView.layer.shadowRadius = 10
+
+        if !contentView.subviews.contains(containerView) {
+            contentView.addSubview(containerView)
+        }
+
+        containerView.snp.makeConstraints({ make in
+            make.leading
+                .equalTo(contentView.snp.leading).offset(16)
+            make.trailing
+                .equalTo(contentView.snp.trailing).offset(-16)
+            make.top
+                .equalTo(contentView.snp.top).offset(16)
+            make.bottom
+                .equalTo(contentView.snp.bottom).offset(-16)
+        })
+    }
+
+    private func setupRoundedCornerView() {
+        guard roundedCornerView == nil else { return }
+        roundedCornerView = UIView(frame: .zero)
+        roundedCornerView.backgroundColor = .white
+        roundedCornerView.layer.cornerRadius = 5
+        roundedCornerView.layer.masksToBounds = true
+
+        if !containerView.subviews.contains(roundedCornerView) {
+            containerView.addSubview(roundedCornerView)
+        }
+
+        roundedCornerView.snp.makeConstraints({ make in
+            make.edges.equalToSuperview()
+        })
+    }
+
+    private func setupTableView() {
+        guard tableView == nil else { return }
+        tableView = UITableView(frame: .zero)
+        tableView.backgroundColor = .clear
+        tableView.isUserInteractionEnabled = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.tableFooterView = UIView()
+        tableView.separatorStyle = .none
+        tableView.dataSource = self
+        tableView.delegate = self
+
+        tableView.register(DefaultCell.self, forCellReuseIdentifier: defaultCellID)
+        tableView.register(SingleImageCell.self, forCellReuseIdentifier: singleImgCellID)
+
+        if !roundedCornerView.subviews.contains(tableView) {
+            roundedCornerView.addSubview(tableView)
+        }
+
+        tableView.snp.makeConstraints({ make in
+            make.edges.equalToSuperview()
+        })
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension SWViewControllerCollectionViewCell: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 8
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 0:
+            return roundedCornerView.frame.height*0.2
+        case 1:
+            return roundedCornerView.frame.height*0.25
+        case 6:
+            return roundedCornerView.frame.height*0.1
+        default:
+            return 44
+        }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = UITableViewCell()
+        switch indexPath.row {
+        case 1:
+            guard let cell1 = tableView
+                .dequeueReusableCell(withIdentifier: singleImgCellID,
+                                                            for: indexPath) as? SingleImageCell else {
+                return cell
+            }
+            cell = cell1
+        default:
+            let cellOthers = tableView.dequeueReusableCell(withIdentifier: defaultCellID, for: indexPath)
+            cell = cellOthers
+        }
+
+        return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension SWViewControllerCollectionViewCell: UITableViewDelegate {
+    func tableView(_ tableView: UITableView,
+                   willDisplay cell: UITableViewCell,
+                   forRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            cell.textLabel?.text = "City Name"
+            cell.textLabel?.textAlignment = .center
+            cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.font = UIFont(name: "Arial-BoldMT", size: 32)
+        case 1:
+            guard let singelImgCell = cell as? SingleImageCell else {
+                return
+            }
+            singelImgCell.setImage(with: "icon_rain")
+        case 2:
+            cell.textLabel?.text = "Moderate Rain"
+            cell.textLabel?.textAlignment = .center
+            cell.textLabel?.numberOfLines = 0
+        case 3:
+            cell.imageView?.image = UIImage(named: "icon_waterDrop")
+            cell.imageView?.contentMode = .scaleAspectFit
+            cell.textLabel?.text = "98%"
+            cell.textLabel?.font = UIFont(name: "GillSans-SemiBold", size: 12)
+        case 4:
+            cell.imageView?.image = UIImage(named: "icon_gauge")
+            cell.imageView?.contentMode = .scaleAspectFit
+            cell.textLabel?.text = "1012 hPa"
+            cell.textLabel?.font = UIFont(name: "GillSans-SemiBold", size: 12)
+        case 5:
+            cell.imageView?.image = UIImage(named: "icon_flag")
+            cell.imageView?.contentMode = .scaleAspectFit
+            cell.textLabel?.text = "1.2 m/s"
+            cell.textLabel?.font = UIFont(name: "GillSans-SemiBold", size: 12)
+        case 6:
+            cell.textLabel?.text = "16 °C"
+            cell.textLabel?.textAlignment = .center
+            cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.font = UIFont(name: "Arial-BoldMT", size: 52)
+        case 7:
+            cell.textLabel?.text = "NOW"
+            cell.textLabel?.textAlignment = .center
+            cell.textLabel?.numberOfLines = 0
+        default:
+            break
+        }
+    }
 }
