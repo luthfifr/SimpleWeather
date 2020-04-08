@@ -55,9 +55,10 @@ extension SWLocationManager {
 
     private func getCurrentLocation() {
         if #available(iOS 9.0, *) {
-            self.locationManager.requestLocation()
+            locationManager.requestLocation()
+        } else {
+            locationManager.requestWhenInUseAuthorization()
         }
-        self.locationManager.requestWhenInUseAuthorization()
     }
 }
 

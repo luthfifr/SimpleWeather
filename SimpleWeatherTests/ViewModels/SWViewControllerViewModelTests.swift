@@ -8,6 +8,7 @@
 
 import XCTest
 import RxSwift
+import CoreLocation
 
 @testable import SimpleWeather
 
@@ -16,6 +17,8 @@ class SWViewControllerViewModelTests: XCTestCase {
     private var viewModel: SWViewControllerViewModel!
     private var service: SWViewControllerService!
     private var fakeProvider: SWMockRxMoyaProvider<SWViewControllerTarget>!
+    private var fakeLocationManager: SWMockLocationManager!
+    private var fakeLocation: CLLocation?
 
     let disposeBag = DisposeBag()
 
@@ -23,6 +26,7 @@ class SWViewControllerViewModelTests: XCTestCase {
         fakeProvider = SWMockRxMoyaProvider<SWViewControllerTarget>()
         service = SWViewControllerService(provider: fakeProvider)
         viewModel = SWViewControllerViewModel(service: service)
+        fakeLocationManager = SWMockLocationManager()
     }
 
     func testGetDataSuccess() {
@@ -69,4 +73,22 @@ class SWViewControllerViewModelTests: XCTestCase {
         XCTAssertTrue(viewModel.isOnline)
     }
 
+    func testLocationManager() {
+        let authorizationStatus = fakeLocationManager.getAuthorizationStatus()
+        let isEnabled = fakeLocationManager.isLocationServicesEnabled()
+        fakeLocationManager.delegate = self
+        fakeLocationManager.requestWhenInUseAuthorization()
+
+        XCTAssertEqual(authorizationStatus, CLAuthorizationStatus.authorizedWhenInUse)
+        XCTAssertTrue(isEnabled)
+        XCTAssertEqual(fakeLocation, fakeLocationManager.location)
+    }
+}
+
+extension SWViewControllerViewModelTests: LocationManagerDelegate {
+    func locationManager(_ manager: SWMockLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.fakeLocation = locations.first
+    }
+    func locationManager(_ manager: SWMockLocationManager, didFailWithError error: Error) {
+    }
 }
