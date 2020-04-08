@@ -14,14 +14,16 @@ enum SWViewControllerViewModelEvent: Equatable {
     case getData
     case getDataSuccess
     case getDataFailure(_ error: SWServiceError?)
-    case getLocationError(_ error: Error)
+    case getLocationError(_ error: Error?)
+    case testWeatherAPICall(_ coord: SWCoordinate)
 
     static func == (lhs: SWViewControllerViewModelEvent, rhs: SWViewControllerViewModelEvent) -> Bool {
         switch (lhs, rhs) {
         case (getData, getData),
              (getDataSuccess, getDataSuccess),
              (getDataFailure, getDataFailure),
-             (getLocationError, getLocationError):
+             (getLocationError, getLocationError),
+             (testWeatherAPICall, testWeatherAPICall):
             return true
         default: return false
         }
@@ -68,6 +70,8 @@ extension SWViewControllerViewModel {
             switch event {
             case .getData:
                 self.locationManager.managerEvents.onNext(.getLocation)
+            case .testWeatherAPICall(let coord):
+                self.getData(coord)
             default: break
             }
         }).disposed(by: disposeBag)
@@ -108,10 +112,12 @@ extension SWViewControllerViewModel {
                     }
                 }).disposed(by: disposeBag)
         } else {
-            let responseData = SWSampleLoader.loadResponse(file: "")
+            let responseData = SWSampleLoader.loadResponse(file: "weather-currentLocation-sampleResponse")
             if let responseStr = String(data: responseData, encoding: .utf8),
                 let model = SWWeatherDataModel.deserialize(from: responseStr) {
                 self.responseModel = model
+            } else {
+                self.uiEvents.onNext(.getDataFailure(nil))
             }
         }
     }

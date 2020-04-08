@@ -35,6 +35,7 @@
 		42D335A2243DD00400392401 /* SWMockRxMoyaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D335A1243DD00400392401 /* SWMockRxMoyaProvider.swift */; };
 		42D335A6243DD22100392401 /* SWWeatherDataModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D335A5243DD22100392401 /* SWWeatherDataModelTests.swift */; };
 		42D335A7243DD3AF00392401 /* weather-currentLocation-sampleResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 42D3359B243DCF2200392401 /* weather-currentLocation-sampleResponse.json */; };
+		42D335AA243DD67000392401 /* SWViewControllerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D335A9243DD67000392401 /* SWViewControllerViewModelTests.swift */; };
 		B368ADB18A70BBFE1DC15637 /* Pods_SimpleWeatherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9945AEFE2D6AF56509E5558A /* Pods_SimpleWeatherTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		42D3359E243DCFD800392401 /* SWObservableUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWObservableUtilities.swift; sourceTree = "<group>"; };
 		42D335A1243DD00400392401 /* SWMockRxMoyaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWMockRxMoyaProvider.swift; sourceTree = "<group>"; };
 		42D335A5243DD22100392401 /* SWWeatherDataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWWeatherDataModelTests.swift; sourceTree = "<group>"; };
+		42D335A9243DD67000392401 /* SWViewControllerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWViewControllerViewModelTests.swift; sourceTree = "<group>"; };
 		9945AEFE2D6AF56509E5558A /* Pods_SimpleWeatherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleWeatherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C34AC465428C5298255BC54A /* Pods-SimpleWeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWeatherTests.debug.xcconfig"; path = "Target Support Files/Pods-SimpleWeatherTests/Pods-SimpleWeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D87BC3232ADAE328A383C741 /* Pods-SimpleWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWeather.release.xcconfig"; path = "Target Support Files/Pods-SimpleWeather/Pods-SimpleWeather.release.xcconfig"; sourceTree = "<group>"; };
@@ -148,12 +150,13 @@
 		427564BD243C844E0084DB39 /* SimpleWeatherTests */ = {
 			isa = PBXGroup;
 			children = (
-				42D335A3243DD16200392401 /* Models */,
 				427564C0243C844E0084DB39 /* Info.plist */,
 				427564BE243C844E0084DB39 /* SimpleWeatherTests.swift */,
 				42D335A0243DCFF700392401 /* Mocks */,
+				42D335A3243DD16200392401 /* Models */,
 				42D3359A243DCEFE00392401 /* SampleResponses */,
 				42D3359D243DCFBD00392401 /* Utilities */,
+				42D335A8243DD64D00392401 /* ViewModels */,
 			);
 			path = SimpleWeatherTests;
 			sourceTree = "<group>";
@@ -287,6 +290,14 @@
 				42D335A5243DD22100392401 /* SWWeatherDataModelTests.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		42D335A8243DD64D00392401 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				42D335A9243DD67000392401 /* SWViewControllerViewModelTests.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		E2A08144B4279279EF750350 /* Frameworks */ = {
@@ -564,6 +575,7 @@
 				427564BF243C844E0084DB39 /* SimpleWeatherTests.swift in Sources */,
 				42D3359F243DCFD800392401 /* SWObservableUtilities.swift in Sources */,
 				42D335A2243DD00400392401 /* SWMockRxMoyaProvider.swift in Sources */,
+				42D335AA243DD67000392401 /* SWViewControllerViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

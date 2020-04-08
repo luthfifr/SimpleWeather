@@ -1,0 +1,45 @@
+{
+    "coord": {
+        "lon": 107.65,
+        "lat": -6.9
+    },
+    "weather": [
+        {
+            "id": 501,
+            "main": "Rain",
+            "description": "moderate rain",
+            "icon": "10d"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 298.42,
+        "feels_like": 300.36,
+        "temp_min": 298.42,
+        "temp_max": 298.42,
+        "pressure": 1009,
+        "humidity": 66,
+        "sea_level": 1009,
+        "grnd_level": 932
+    },
+    "wind": {
+        "speed": 1.5,
+        "deg": 321
+    },
+    "rain": {
+        "3h": 9.51
+    },
+    "clouds": {
+        "all": 97
+    },
+    "dt": 1586334971,
+    "sys": {
+        "country": "ID",
+        "sunrise": 1586299871,
+        "sunset": 1586343051
+    },
+    "timezone": 25200,
+    "id": 1650357,
+    "name": "Bandung",
+    "cod": 200
+}

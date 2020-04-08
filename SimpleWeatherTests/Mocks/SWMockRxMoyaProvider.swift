@@ -13,7 +13,7 @@ import RxSwift
 
 @testable import SimpleWeather
 
-final class HCMockRxMoyaProvider<T: TargetType>: SWMoyaProvider<T> {
+final class SWMockRxMoyaProvider<T: TargetType>: SWMoyaProvider<T> {
     private let disposeBag = DisposeBag()
 
     public var statusCode = PublishSubject<Int>()

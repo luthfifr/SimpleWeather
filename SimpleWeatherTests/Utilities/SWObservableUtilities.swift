@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxTest
 
-struct HCObservableUtilities {
+struct SWObservableUtilities {
     static func latestValueFrom<T>(observable: Observable<T>,
                                    disposeBag: DisposeBag) -> T? {
         return latestValueFrom(observable: observable,
