@@ -8,19 +8,43 @@
 
 import UIKit
 import SnapKit
+import RxSwift
+import Toast_Swift
 
 class SWViewController: UIViewController {
     typealias Cell = SWViewControllerCollectionViewCell
 
+    private let disposeBag = DisposeBag()
+
+    private var viewModel: SWViewControllerViewModel!
+    private var dataModel: SWWeatherDataModel? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+
     private var collectionView: UICollectionView!
+    private var loadingView: SWLoadingView!
 
     private let cellID = String(describing: Cell.self)
     private let cellPadding: CGFloat = 16
+
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        viewModel = SWViewControllerViewModel()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        viewModel = SWViewControllerViewModel()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Current Weather"
+
+        viewModel.viewModelEvents.onNext(.getData)
 
         setupUI()
     }
@@ -38,6 +62,25 @@ class SWViewController: UIViewController {
 
 // MARK: - Private methods
 extension SWViewController {
+    private func setupEvents() {
+        viewModel.uiEvents.subscribe(onNext: { [weak self] event in
+            guard let `self` = self else { return }
+
+            self.showHideLoadingView(false)
+
+            switch event {
+            case .getDataSuccess:
+                self.dataModel = self.viewModel.responseModel
+                if !self.viewModel.isOnline {
+                    self.showToast(with: "Offline Mode")
+                }
+            case .getDataFailure(let error):
+                self.showError(error)
+            default: break
+            }
+        }).disposed(by: disposeBag)
+    }
+
     private func setupUI() {
         setupCollectionView()
     }
@@ -59,6 +102,59 @@ extension SWViewController {
         collectionView.snp.makeConstraints({ make in
             make.edges.equalToSuperview()
         })
+    }
+
+    private func setupLoadingView() {
+        if loadingView == nil {
+            loadingView = SWLoadingView(frame: .zero)
+            loadingView.titleText = "Loading..."
+
+            if !view.subviews.contains(loadingView) {
+                view.addSubview(loadingView)
+            }
+
+            loadingView.snp.makeConstraints({ make in
+                make.edges.equalToSuperview()
+            })
+        }
+    }
+
+    private func showHideLoadingView(_ isShown: Bool) {
+        loadingView.animateSpinning(isShown)
+        if isShown {
+            view.bringSubviewToFront(loadingView)
+        } else {
+            view.sendSubviewToBack(loadingView)
+        }
+
+        loadingView.isHidden = !isShown
+    }
+
+    private func setupToast() {
+        let toastManager = ToastManager.shared
+        toastManager.position = .bottom
+        toastManager.duration = 1
+    }
+
+    private func showToast(with message: String) {
+        view.makeToast(message)
+    }
+
+    private func showError(_ error: SWServiceError?) {
+        var alertModel = UIAlertModel(style: .alert)
+        guard let error = error else {
+            return
+        }
+        alertModel.message = error.responseString ?? String()
+        alertModel.title = "Request Data Failure"
+        alertModel.actions = [UIAlertActionModel(title: "OK", style: .cancel)]
+        self.showAlert(with: alertModel)
+            .asObservable()
+            .subscribe(onNext: { selectedActionIdx in
+                #if DEBUG
+                print("alert action index = \(selectedActionIdx)")
+                #endif
+            }).disposed(by: self.disposeBag)
     }
 }
 

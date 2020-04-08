@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        SWReachability.shared.startMonitoring()
+
         if #available(iOS 13.0, *) {
             //should do nothing
         } else {
@@ -31,6 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.makeKeyAndVisible()
         }
         return true
+    }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        SWReachability.shared.stopMonitoring()
     }
 }
 
