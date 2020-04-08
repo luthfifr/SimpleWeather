@@ -74,8 +74,9 @@ extension SWViewControllerCollectionViewCell {
             numberOfLines: 0,
             textAlignment: .center,
             font: UIFont(name: "Arial-BoldMT", size: 52))
-        labelDataParamsDict[7] = SWLabelDataParams(text: "NOW", numberOfLines: 0,
-                                                   textAlignment: .center)
+        labelDataParamsDict[7] = SWLabelDataParams(text: data.requestTime ?? "NOW", numberOfLines: 0,
+                                                   textAlignment: .center,
+                                                   font: UIFont(name: "ArialMT", size: 22))
 
         smallIconNameDict[3] = "icon_waterDrop"
         smallIconNameDict[4] = "icon_gauge"

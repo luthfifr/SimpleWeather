@@ -14,7 +14,7 @@ protocol SWViewControllerServiceType {
     func getData(_ coord: SWCoordinate) -> Observable<SWNetworkEvent<SWWeatherDataModel>>
 }
 
-struct SWViewControllerService: SWViewControllerServiceType {
+class SWViewControllerService: SWViewControllerServiceType {
     private let provider: SWMoyaProvider<SWViewControllerTarget>
 
     init() {
@@ -27,8 +27,9 @@ struct SWViewControllerService: SWViewControllerServiceType {
 
     func getData(_ coord: SWCoordinate) -> Observable<SWNetworkEvent<SWWeatherDataModel>> {
         return provider.rx.request(.getData(coord))
-            .parseResponse({ (responseString: String) in
-                guard var response = SWWeatherDataModel.deserialize(from: responseString) else {
+            .parseResponse({ [weak self] (responseString: String) in
+                guard let `self` = self,
+                    var response = SWWeatherDataModel.deserialize(from: responseString) else {
                     var model = SWWeatherDataModel()
                     model.responseString = responseString
                     return model
@@ -36,11 +37,20 @@ struct SWViewControllerService: SWViewControllerServiceType {
 
                 response.status = .success
                 response.responseString = responseString
+                response.requestTime = self.getCurrentDateString()
 
                 return response
             })
             .mapFailures { error in
                 return .failed(error)
             }
+    }
+
+    private func getCurrentDateString() -> String {
+        let date = Date()
+        let format = DateFormatter()
+        format.dateFormat = "yyyy-MM-dd HH:mm"
+        let formattedDate = format.string(from: date)
+       return formattedDate
     }
 }

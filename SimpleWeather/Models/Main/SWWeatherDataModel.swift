@@ -28,6 +28,7 @@ struct SWWeatherDataModel: HandyJSON {
     var reqID: Int?
     var name: String?
     var cod: String?
+    var requestTime: String? //added this field to mark the request time
 
     mutating func mapping(mapper: HelpingMapper) {
         mapper <<< self.changes <-- "dt"
