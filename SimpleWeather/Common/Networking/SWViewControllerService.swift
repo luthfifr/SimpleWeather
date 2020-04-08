@@ -11,7 +11,7 @@ import Moya
 import RxSwift
 
 protocol SWViewControllerServiceType {
-    func getData() -> Observable<SWNetworkEvent<SWWeatherDataModel>>
+    func getData(_ coord: SWCoordinate) -> Observable<SWNetworkEvent<SWWeatherDataModel>>
 }
 
 struct SWViewControllerService: SWViewControllerServiceType {
@@ -25,8 +25,8 @@ struct SWViewControllerService: SWViewControllerServiceType {
         self.provider = provider
     }
 
-    func getData() -> Observable<SWNetworkEvent<SWWeatherDataModel>> {
-        return provider.rx.request(.getData)
+    func getData(_ coord: SWCoordinate) -> Observable<SWNetworkEvent<SWWeatherDataModel>> {
+        return provider.rx.request(.getData(coord))
             .parseResponse({ (responseString: String) in
                 guard var response = SWWeatherDataModel.deserialize(from: responseString) else {
                     var model = SWWeatherDataModel()

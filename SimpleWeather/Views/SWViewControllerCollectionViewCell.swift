@@ -20,6 +20,12 @@ class SWViewControllerCollectionViewCell: UICollectionViewCell {
     private let defaultCellID = String(describing: DefaultCell.self)
     private let singleImgCellID = String(describing: SingleImageCell.self)
 
+    private var dataModel: SWWeatherDataModel? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+
     // MARK: - Initialization
     convenience init() {
         self.init()
@@ -34,6 +40,13 @@ class SWViewControllerCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupViews()
+    }
+}
+
+// MARK: - Public methods
+extension SWViewControllerCollectionViewCell {
+    func setData(with data: SWWeatherDataModel?) {
+        self.dataModel = data
     }
 }
 
@@ -158,38 +171,54 @@ extension SWViewControllerCollectionViewCell: UITableViewDelegate {
     func tableView(_ tableView: UITableView,
                    willDisplay cell: UITableViewCell,
                    forRowAt indexPath: IndexPath) {
+        guard let data = dataModel,
+            let weatherData = data.weather?.first,
+            let main = data.main,
+            let wind = data.wind else { return }
+
         switch indexPath.row {
         case 0:
-            cell.textLabel?.text = "City Name"
+            cell.textLabel?.text = data.name ?? "City Name"
             cell.textLabel?.textAlignment = .center
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.font = UIFont(name: "Arial-BoldMT", size: 32)
         case 1:
-            guard let singelImgCell = cell as? SingleImageCell else {
+            guard let singelImgCell = cell as? SingleImageCell,
+                let mainData = weatherData.main else {
                 return
             }
-            singelImgCell.setImage(with: "icon_rain")
+            var imageName = String()
+            switch mainData {
+            case "Rain":
+                imageName = "icon_rain"
+            case "Clouds":
+                imageName = "icon_cloud"
+            default:
+                imageName = "icon_sun"
+            }
+            singelImgCell.setImage(with: imageName)
         case 2:
-            cell.textLabel?.text = "Moderate Rain"
+            cell.textLabel?.text = weatherData.description ?? "No description"
             cell.textLabel?.textAlignment = .center
             cell.textLabel?.numberOfLines = 0
         case 3:
             cell.imageView?.image = UIImage(named: "icon_waterDrop")
             cell.imageView?.contentMode = .scaleAspectFit
-            cell.textLabel?.text = "98%"
+            cell.textLabel?.text = "\(main.humidity ?? -1)%"
             cell.textLabel?.font = UIFont(name: "GillSans-SemiBold", size: 12)
         case 4:
             cell.imageView?.image = UIImage(named: "icon_gauge")
             cell.imageView?.contentMode = .scaleAspectFit
-            cell.textLabel?.text = "1012 hPa"
+            cell.textLabel?.text = "\(main.pressure ?? -1)hPa"
             cell.textLabel?.font = UIFont(name: "GillSans-SemiBold", size: 12)
         case 5:
             cell.imageView?.image = UIImage(named: "icon_flag")
             cell.imageView?.contentMode = .scaleAspectFit
-            cell.textLabel?.text = "1.2 m/s"
+            cell.textLabel?.text = "\(wind.speed ?? 0) m/s"
             cell.textLabel?.font = UIFont(name: "GillSans-SemiBold", size: 12)
         case 6:
-            cell.textLabel?.text = "16 °C"
+            let celcius = (main.temp ?? 0) - Double(273.15)
+            cell.textLabel?.text = "\(celcius.rounded()) °C"
             cell.textLabel?.textAlignment = .center
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.font = UIFont(name: "Arial-BoldMT", size: 52)

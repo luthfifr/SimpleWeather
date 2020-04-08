@@ -8,17 +8,20 @@
 
 import Foundation
 import RxSwift
+import CoreLocation
 
 enum SWViewControllerViewModelEvent: Equatable {
     case getData
     case getDataSuccess
     case getDataFailure(_ error: SWServiceError?)
+    case getLocationError(_ error: Error)
 
     static func == (lhs: SWViewControllerViewModelEvent, rhs: SWViewControllerViewModelEvent) -> Bool {
         switch (lhs, rhs) {
         case (getData, getData),
              (getDataSuccess, getDataSuccess),
-             (getDataFailure, getDataFailure):
+             (getDataFailure, getDataFailure),
+             (getLocationError, getLocationError):
             return true
         default: return false
         }
@@ -35,6 +38,7 @@ protocol SWViewControllerViewModelType {
 final class SWViewControllerViewModel: SWViewControllerViewModelType {
     private let disposeBag = DisposeBag()
     private let service: SWViewControllerService!
+    private let locationManager = SWLocationManager.shared
 
     let uiEvents = PublishSubject<SWViewControllerViewModelEvent>()
     let viewModelEvents = PublishSubject<SWViewControllerViewModelEvent>()
@@ -63,17 +67,35 @@ extension SWViewControllerViewModel {
             guard let `self` = self else { return }
             switch event {
             case .getData:
-                self.getData()
+                self.locationManager.managerEvents.onNext(.getLocation)
             default: break
             }
         }).disposed(by: disposeBag)
+
+        locationManager
+            .uiEvents
+            .subscribe(onNext: { [weak self] event in
+                guard let `self` = self else { return }
+                switch event {
+                case .currentLocation(let location):
+                    let coord = SWCoordinate(lat: location.coordinate.latitude,
+                                             long: location.coordinate.longitude)
+                    self.getData(coord)
+                case .getLocationError(let error):
+                    #if DEBUG
+                    print("location manager error: \(error.localizedDescription)")
+                    #endif
+                    self.uiEvents.onNext(.getLocationError(error))
+                default: break
+                }
+            }).disposed(by: disposeBag)
     }
 
-    private func getData() {
+    private func getData(_ coord: SWCoordinate) {
         isOnline = SWReachability.shared.isNetworkAvailable
         if isOnline {
             service
-                .getData()
+                .getData(coord)
                 .asObservable()
                 .subscribe(onNext: { [weak self] event in
                     guard let `self` = self else { return }

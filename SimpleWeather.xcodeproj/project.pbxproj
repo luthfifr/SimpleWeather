@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3C7D9A5C7AA68001D25F02B6 /* Pods_SimpleWeather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEFFBC8E5CB915F1972B5D91 /* Pods_SimpleWeather.framework */; };
+		420BDB46243D96DA00F43571 /* SWLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420BDB45243D96DA00F43571 /* SWLocationManager.swift */; };
+		420BDB48243DC28600F43571 /* SWCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420BDB47243DC28600F43571 /* SWCoordinate.swift */; };
 		427564A8243C844B0084DB39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427564A7243C844B0084DB39 /* AppDelegate.swift */; };
 		427564AA243C844B0084DB39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427564A9243C844B0084DB39 /* SceneDelegate.swift */; };
 		427564B1243C844D0084DB39 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 427564B0243C844D0084DB39 /* Assets.xcassets */; };
@@ -44,6 +46,8 @@
 
 /* Begin PBXFileReference section */
 		12C7A8F4BC2464D68F1B15A8 /* Pods-SimpleWeatherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWeatherTests.release.xcconfig"; path = "Target Support Files/Pods-SimpleWeatherTests/Pods-SimpleWeatherTests.release.xcconfig"; sourceTree = "<group>"; };
+		420BDB45243D96DA00F43571 /* SWLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWLocationManager.swift; sourceTree = "<group>"; };
+		420BDB47243DC28600F43571 /* SWCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWCoordinate.swift; sourceTree = "<group>"; };
 		427564A4243C844B0084DB39 /* SimpleWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		427564A7243C844B0084DB39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		427564A9243C844B0084DB39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				427564E3243D0F1F0084DB39 /* SWWeatherDataModel.swift */,
+				420BDB47243DC28600F43571 /* SWCoordinate.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -221,6 +226,7 @@
 			children = (
 				427564E9243D14170084DB39 /* SWReachability.swift */,
 				427564EB243D14410084DB39 /* SWSampleLoader.swift */,
+				420BDB45243D96DA00F43571 /* SWLocationManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -465,6 +471,7 @@
 				427564C9243CD6310084DB39 /* SWViewController.swift in Sources */,
 				427564A8243C844B0084DB39 /* AppDelegate.swift in Sources */,
 				427564D4243D0B250084DB39 /* SWMoyaProvider.swift in Sources */,
+				420BDB46243D96DA00F43571 /* SWLocationManager.swift in Sources */,
 				427564D7243D0B6A0084DB39 /* Extension+MoyaResponse.swift in Sources */,
 				427564DB243D0BB30084DB39 /* SWServiceError.swift in Sources */,
 				427564EA243D14170084DB39 /* SWReachability.swift in Sources */,
@@ -472,6 +479,7 @@
 				427564DF243D0CD60084DB39 /* SWViewControllerTarget.swift in Sources */,
 				427564E7243D12D40084DB39 /* SWViewControllerViewModel.swift in Sources */,
 				427564CE243CEE880084DB39 /* SWViewControllerCollectionViewCell.swift in Sources */,
+				420BDB48243DC28600F43571 /* SWCoordinate.swift in Sources */,
 				427564F3243D17A20084DB39 /* Extension+UIViewController.swift in Sources */,
 				427564D0243D01220084DB39 /* SWViewControllerTableViewCell.swift in Sources */,
 				427564EC243D14410084DB39 /* SWSampleLoader.swift in Sources */,

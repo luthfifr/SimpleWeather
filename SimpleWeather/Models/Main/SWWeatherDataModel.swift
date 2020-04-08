@@ -31,7 +31,7 @@ struct SWWeatherDataModel: HandyJSON {
 
     mutating func mapping(mapper: HelpingMapper) {
         mapper <<< self.changes <-- "dt"
-        mapper <<< self.system <-- "system"
+        mapper <<< self.system <-- "sys"
         mapper <<< self.reqID <-- "id"
     }
 
@@ -46,7 +46,7 @@ struct SWWeatherDataModel: HandyJSON {
         var lon: Double?
     }
 
-    struct SWWeather {
+    struct SWWeather: HandyJSON {
         var weatherID: Int?
         var main: String?
         var description: String?
@@ -57,7 +57,7 @@ struct SWWeatherDataModel: HandyJSON {
         }
     }
 
-    struct SWMain {
+    struct SWMain: HandyJSON {
         var temp: Double?
         var feelsLike: Double?
         var tempMin: Double?
@@ -72,16 +72,16 @@ struct SWWeatherDataModel: HandyJSON {
         }
     }
 
-    struct SWWind {
+    struct SWWind: HandyJSON {
         var speed: Double?
         var deg: Double?
     }
 
-    struct SWCoulds {
+    struct SWCoulds: HandyJSON {
         var all: Double?
     }
 
-    struct SWSys {
+    struct SWSys: HandyJSON {
         var type: Int?
         var systemID: Int?
         var country: String?

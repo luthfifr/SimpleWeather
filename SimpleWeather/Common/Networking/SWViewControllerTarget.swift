@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum SWViewControllerTarget {
-    case getData
+    case getData(_ coord: SWCoordinate)
 }
 
 extension SWViewControllerTarget: TargetType {
@@ -38,8 +38,8 @@ extension SWViewControllerTarget: TargetType {
 
     var task: Task {
         switch self {
-        case .getData:
-            return .requestParameters(parameters: getParemeters(), encoding: encoding)
+        case .getData(let coord):
+            return .requestParameters(parameters: getParemeters(coord), encoding: encoding)
         }
     }
 
@@ -56,10 +56,12 @@ extension SWViewControllerTarget: TargetType {
 }
 
 extension SWViewControllerTarget {
-    private func getParemeters() -> [String: Any] {
+    private func getParemeters(_ coord: SWCoordinate) -> [String: Any] {
         var params = [String: Any]()
 
-        params["q"] = "Jakarta,id"
+//        params["q"] = "Jakarta,id"
+        params["lat"] = coord.lat ?? 0
+        params["lon"] = coord.long ?? 0
         params["appid"] = "e24963a12cdbefaca5b79c9781ac6d1e"
 
         return params

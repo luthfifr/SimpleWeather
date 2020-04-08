@@ -25,6 +25,7 @@ class SWViewController: UIViewController {
 
     private var collectionView: UICollectionView!
     private var loadingView: SWLoadingView!
+    private let refresher = UIRefreshControl()
 
     private let cellID = String(describing: Cell.self)
     private let cellPadding: CGFloat = 16
@@ -47,6 +48,8 @@ class SWViewController: UIViewController {
         viewModel.viewModelEvents.onNext(.getData)
 
         setupUI()
+        showHideLoadingView(true)
+        setupEvents()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -63,7 +66,9 @@ class SWViewController: UIViewController {
 // MARK: - Private methods
 extension SWViewController {
     private func setupEvents() {
-        viewModel.uiEvents.subscribe(onNext: { [weak self] event in
+        viewModel
+            .uiEvents
+            .subscribe(onNext: { [weak self] event in
             guard let `self` = self else { return }
 
             self.showHideLoadingView(false)
@@ -83,6 +88,7 @@ extension SWViewController {
 
     private func setupUI() {
         setupCollectionView()
+        setupLoadingView()
     }
 
     private func setupCollectionView() {
@@ -93,7 +99,19 @@ extension SWViewController {
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.alwaysBounceVertical = true
         collectionView.register(Cell.self, forCellWithReuseIdentifier: cellID)
+
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh",
+                                                       attributes: [NSAttributedString.Key.font: UIFont(name: "GillSans", size: 10.0) ?? UIFont.systemFont(ofSize: 10.0)]) //swiftlint:disable:this line_length
+        refresher.addTarget(self,
+                            action: #selector(reloadCollectionView),
+                            for: .valueChanged)
+        if #available(iOS 10.0, *) {
+            collectionView.refreshControl = refresher
+        } else {
+            collectionView.addSubview(refresher)
+        }
 
         if !view.subviews.contains(collectionView) {
             view.addSubview(collectionView)
@@ -116,6 +134,21 @@ extension SWViewController {
             loadingView.snp.makeConstraints({ make in
                 make.edges.equalToSuperview()
             })
+        }
+    }
+
+    @objc private func reloadCollectionView() {
+        if #available(iOS 10.0, *) {
+            guard let refreshCtrl = collectionView.refreshControl else { return }
+            refreshCtrl.beginRefreshing()
+            showHideLoadingView(true)
+            viewModel.viewModelEvents.onNext(.getData)
+            refreshCtrl.endRefreshing()
+        } else {
+            refresher.beginRefreshing()
+            showHideLoadingView(true)
+            viewModel.viewModelEvents.onNext(.getData)
+            refresher.endRefreshing()
         }
     }
 
@@ -184,6 +217,7 @@ extension SWViewController: UICollectionViewDelegate {
                         willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {
         guard let cell = cell as? Cell else { return }
+        cell.setData(with: self.dataModel)
     }
 }
 

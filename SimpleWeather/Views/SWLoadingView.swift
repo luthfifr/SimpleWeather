@@ -41,7 +41,7 @@ extension SWLoadingView {
 
     private func setUpView() {
         isUserInteractionEnabled = false
-        backgroundColor = UIColor.yellow.withAlphaComponent(0.8)
+        backgroundColor = UIColor.black.withAlphaComponent(0.25)
         clipsToBounds = false
         isAccessibilityElement = false
         accessibilityIdentifier = "loading view"
