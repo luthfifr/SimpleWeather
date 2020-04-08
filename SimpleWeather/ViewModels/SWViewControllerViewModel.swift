@@ -79,7 +79,7 @@ extension SWViewControllerViewModel {
                 switch event {
                 case .currentLocation(let location):
                     let coord = SWCoordinate(lat: location.coordinate.latitude,
-                                             long: location.coordinate.longitude)
+                                             lon: location.coordinate.longitude)
                     self.getData(coord)
                 case .getLocationError(let error):
                     #if DEBUG

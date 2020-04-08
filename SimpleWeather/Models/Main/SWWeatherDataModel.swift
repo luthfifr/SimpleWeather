@@ -41,11 +41,6 @@ struct SWWeatherDataModel: HandyJSON {
         responseString = nil
     }
 
-    struct SWCoordinate: HandyJSON {
-        var lat: Double?
-        var lon: Double?
-    }
-
     struct SWWeather: HandyJSON {
         var weatherID: Int?
         var main: String?
@@ -92,4 +87,9 @@ struct SWWeatherDataModel: HandyJSON {
             mapper <<< self.systemID <-- "id"
         }
     }
+}
+
+struct SWCoordinate: HandyJSON {
+    var lat: Double?
+    var lon: Double?
 }

@@ -46,7 +46,7 @@ extension SWViewControllerTarget: TargetType {
     var sampleData: Data {
         switch self {
         case .getData:
-            return Data()
+            return SWSampleLoader.loadResponse(file: "weather-currentLocation-sampleResponse")
         }
     }
 
@@ -61,7 +61,7 @@ extension SWViewControllerTarget {
 
 //        params["q"] = "Jakarta,id"
         params["lat"] = coord.lat ?? 0
-        params["lon"] = coord.long ?? 0
+        params["lon"] = coord.lon ?? 0
         params["appid"] = "e24963a12cdbefaca5b79c9781ac6d1e"
 
         return params
