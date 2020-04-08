@@ -25,6 +25,8 @@ class SWViewControllerCollectionViewCell: UICollectionViewCell {
             tableView.reloadData()
         }
     }
+    private var labelDataParamsDict = [Int: SWLabelDataParams]()
+    private var smallIconNameDict = [Int: String]()
 
     // MARK: - Initialization
     convenience init() {
@@ -47,6 +49,37 @@ class SWViewControllerCollectionViewCell: UICollectionViewCell {
 extension SWViewControllerCollectionViewCell {
     func setData(with data: SWWeatherDataModel?) {
         self.dataModel = data
+        guard let data = data,
+            let weatherData = data.weather?.first,
+            let main = data.main,
+            let wind = data.wind else { return }
+
+        let gillSansSemiBold = UIFont(name: "GillSans-SemiBold", size: 12)
+
+        labelDataParamsDict[0] = SWLabelDataParams(text: data.name ?? "City Name",
+                                                   numberOfLines: 0,
+                                                   textAlignment: .center,
+                                                   font: UIFont(name: "Arial-BoldMT", size: 32))
+        labelDataParamsDict[2] = SWLabelDataParams(text: weatherData.description ?? "No description",
+                                                   numberOfLines: 0,
+                                                   textAlignment: .center)
+        labelDataParamsDict[3] = SWLabelDataParams(text: "\(main.humidity ?? -1)%",
+            font: gillSansSemiBold)
+        labelDataParamsDict[4] = SWLabelDataParams(text: "\(main.pressure ?? -1) hPa",
+            font: gillSansSemiBold)
+        labelDataParamsDict[5] = SWLabelDataParams(text: "\(wind.speed ?? 0) m/s",
+            font: gillSansSemiBold)
+        let celcius = (main.temp ?? 0) - Double(273.15)
+        labelDataParamsDict[6] = SWLabelDataParams(text: "\(celcius.rounded()) °C",
+            numberOfLines: 0,
+            textAlignment: .center,
+            font: UIFont(name: "Arial-BoldMT", size: 52))
+        labelDataParamsDict[7] = SWLabelDataParams(text: "NOW", numberOfLines: 0,
+                                                   textAlignment: .center)
+
+        smallIconNameDict[3] = "icon_waterDrop"
+        smallIconNameDict[4] = "icon_gauge"
+        smallIconNameDict[5] = "icon_flag"
     }
 }
 
@@ -172,16 +205,9 @@ extension SWViewControllerCollectionViewCell: UITableViewDelegate {
                    willDisplay cell: UITableViewCell,
                    forRowAt indexPath: IndexPath) {
         guard let data = dataModel,
-            let weatherData = data.weather?.first,
-            let main = data.main,
-            let wind = data.wind else { return }
+            let weatherData = data.weather?.first else { return }
 
         switch indexPath.row {
-        case 0:
-            cell.textLabel?.text = data.name ?? "City Name"
-            cell.textLabel?.textAlignment = .center
-            cell.textLabel?.numberOfLines = 0
-            cell.textLabel?.font = UIFont(name: "Arial-BoldMT", size: 32)
         case 1:
             guard let singelImgCell = cell as? SingleImageCell,
                 let mainData = weatherData.main else {
@@ -197,37 +223,15 @@ extension SWViewControllerCollectionViewCell: UITableViewDelegate {
                 imageName = "icon_sun"
             }
             singelImgCell.setImage(with: imageName)
-        case 2:
-            cell.textLabel?.text = weatherData.description ?? "No description"
-            cell.textLabel?.textAlignment = .center
-            cell.textLabel?.numberOfLines = 0
-        case 3:
-            cell.imageView?.image = UIImage(named: "icon_waterDrop")
+        case 3, 4, 5:
+            cell.imageView?.image = UIImage(named: smallIconNameDict[indexPath.row] ?? String())
             cell.imageView?.contentMode = .scaleAspectFit
-            cell.textLabel?.text = "\(main.humidity ?? -1)%"
-            cell.textLabel?.font = UIFont(name: "GillSans-SemiBold", size: 12)
-        case 4:
-            cell.imageView?.image = UIImage(named: "icon_gauge")
-            cell.imageView?.contentMode = .scaleAspectFit
-            cell.textLabel?.text = "\(main.pressure ?? -1)hPa"
-            cell.textLabel?.font = UIFont(name: "GillSans-SemiBold", size: 12)
-        case 5:
-            cell.imageView?.image = UIImage(named: "icon_flag")
-            cell.imageView?.contentMode = .scaleAspectFit
-            cell.textLabel?.text = "\(wind.speed ?? 0) m/s"
-            cell.textLabel?.font = UIFont(name: "GillSans-SemiBold", size: 12)
-        case 6:
-            let celcius = (main.temp ?? 0) - Double(273.15)
-            cell.textLabel?.text = "\(celcius.rounded()) °C"
-            cell.textLabel?.textAlignment = .center
-            cell.textLabel?.numberOfLines = 0
-            cell.textLabel?.font = UIFont(name: "Arial-BoldMT", size: 52)
-        case 7:
-            cell.textLabel?.text = "NOW"
-            cell.textLabel?.textAlignment = .center
-            cell.textLabel?.numberOfLines = 0
         default:
             break
+        }
+
+        if indexPath.row != 1 {
+            cell.textLabel?.assignData(with: labelDataParamsDict[indexPath.row] ?? SWLabelDataParams())
         }
     }
 }

@@ -37,6 +37,8 @@
 		42D335A7243DD3AF00392401 /* weather-currentLocation-sampleResponse.json in Resources */ = {isa = PBXBuildFile; fileRef = 42D3359B243DCF2200392401 /* weather-currentLocation-sampleResponse.json */; };
 		42D335AA243DD67000392401 /* SWViewControllerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D335A9243DD67000392401 /* SWViewControllerViewModelTests.swift */; };
 		42D335AC243E077800392401 /* SWMockLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D335AB243E077800392401 /* SWMockLocationManager.swift */; };
+		42D335AE243E18DE00392401 /* Extension+UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D335AD243E18DE00392401 /* Extension+UILabel.swift */; };
+		42D335B0243E1A4900392401 /* SWLabelDataParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D335AF243E1A4900392401 /* SWLabelDataParams.swift */; };
 		B368ADB18A70BBFE1DC15637 /* Pods_SimpleWeatherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9945AEFE2D6AF56509E5558A /* Pods_SimpleWeatherTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +86,8 @@
 		42D335A5243DD22100392401 /* SWWeatherDataModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWWeatherDataModelTests.swift; sourceTree = "<group>"; };
 		42D335A9243DD67000392401 /* SWViewControllerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWViewControllerViewModelTests.swift; sourceTree = "<group>"; };
 		42D335AB243E077800392401 /* SWMockLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWMockLocationManager.swift; sourceTree = "<group>"; };
+		42D335AD243E18DE00392401 /* Extension+UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UILabel.swift"; sourceTree = "<group>"; };
+		42D335AF243E1A4900392401 /* SWLabelDataParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWLabelDataParams.swift; sourceTree = "<group>"; };
 		9945AEFE2D6AF56509E5558A /* Pods_SimpleWeatherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SimpleWeatherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C34AC465428C5298255BC54A /* Pods-SimpleWeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWeatherTests.debug.xcconfig"; path = "Target Support Files/Pods-SimpleWeatherTests/Pods-SimpleWeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D87BC3232ADAE328A383C741 /* Pods-SimpleWeather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SimpleWeather.release.xcconfig"; path = "Target Support Files/Pods-SimpleWeather/Pods-SimpleWeather.release.xcconfig"; sourceTree = "<group>"; };
@@ -198,6 +202,7 @@
 			children = (
 				427564D6243D0B6A0084DB39 /* Extension+MoyaResponse.swift */,
 				427564F2243D17A20084DB39 /* Extension+UIViewController.swift */,
+				42D335AD243E18DE00392401 /* Extension+UILabel.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				427564F0243D171E0084DB39 /* UIAlertModel.swift */,
+				42D335AF243E1A4900392401 /* SWLabelDataParams.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -557,6 +563,7 @@
 				427564D4243D0B250084DB39 /* SWMoyaProvider.swift in Sources */,
 				420BDB46243D96DA00F43571 /* SWLocationManager.swift in Sources */,
 				427564D7243D0B6A0084DB39 /* Extension+MoyaResponse.swift in Sources */,
+				42D335B0243E1A4900392401 /* SWLabelDataParams.swift in Sources */,
 				427564DB243D0BB30084DB39 /* SWServiceError.swift in Sources */,
 				427564EA243D14170084DB39 /* SWReachability.swift in Sources */,
 				427564AA243C844B0084DB39 /* SceneDelegate.swift in Sources */,
@@ -564,6 +571,7 @@
 				427564E7243D12D40084DB39 /* SWViewControllerViewModel.swift in Sources */,
 				427564CE243CEE880084DB39 /* SWViewControllerCollectionViewCell.swift in Sources */,
 				427564F3243D17A20084DB39 /* Extension+UIViewController.swift in Sources */,
+				42D335AE243E18DE00392401 /* Extension+UILabel.swift in Sources */,
 				427564D0243D01220084DB39 /* SWViewControllerTableViewCell.swift in Sources */,
 				427564EC243D14410084DB39 /* SWSampleLoader.swift in Sources */,
 				427564F1243D171E0084DB39 /* UIAlertModel.swift in Sources */,
